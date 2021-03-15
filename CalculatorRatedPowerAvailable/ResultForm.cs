@@ -18,11 +18,15 @@ namespace CalculatorRatedPowerAvailable
         {
             InitializeComponent();
             btnDownloadCalculateWord.Click += BtnDownloadCalculateWord_Click;
+            this.Load += ResultForm_Load;
         }
 
         private void BtnDownloadCalculateWord_Click(object sender, EventArgs e)
         {
-
+            if (openFileDialog1.ShowDialog() == DialogResult.Cancel)
+                return;
+            // получаем выбранный файл
+            string filename = openFileDialog1.FileName;
 
             //initialize word object
             var templatePath = Path.Combine(Environment.CurrentDirectory, "calculateTemplate.docx");
@@ -108,7 +112,7 @@ namespace CalculatorRatedPowerAvailable
         private void ResultForm_Load(object sender, EventArgs e)
         {
             var document = new Document();
-            document.LoadRtf(Path.Combine(Environment.CurrentDirectory, "calculateTemplate.docx"));
+            document.LoadRtf(Path.Combine(Environment.CurrentDirectory, "calculateTemplate.rtf"));
             //get strings to replace
             Dictionary<string, string> dictReplace = GetReplaceDictionary();
             //Replace text
@@ -117,8 +121,10 @@ namespace CalculatorRatedPowerAvailable
                 document.Replace(kvp.Key, kvp.Value, true, true);
             }
 
-            document.SaveToFile(Path.Combine(Environment.CurrentDirectory, $"resultCalculate.docx"), FileFormat.Docx);
-            richTextBox1.LoadFile(Path.Combine(Environment.CurrentDirectory, $"resultCalculate.docx"));
+            document.SaveToFile(Path.Combine(Environment.CurrentDirectory, $"resultCalculate.rtf"), FileFormat.Rtf);
+            document.Close();
+
+            richTextBox1.LoadFile(Path.Combine(Environment.CurrentDirectory, $"resultCalculate.rtf"));
         }
     }
 }
