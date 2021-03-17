@@ -175,8 +175,8 @@ namespace CalculatorRatedPowerAvailable
         {
             Dictionary<string, string> replaceDict = new Dictionary<string, string>();
             
-            replaceDict.Add("#grsname#", Result.GrsName.ToString());
-            replaceDict.Add("#subgrsname#", Result.SubGrsName.ToString());
+            replaceDict.Add("#grsname#", Result.GrsName.ToUpperInvariant().ToString());
+            replaceDict.Add("#subgrsname#", Result.SubGrsName.ToUpperInvariant().ToString());
             replaceDict.Add("#msm#", Result.Msantimeter.ToString());
             replaceDict.Add("#bigr#", Result.R.ToString());
             replaceDict.Add("#smallk#", Result.K.ToString());
