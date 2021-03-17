@@ -31,7 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ResultForm));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxResultDocument = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxResultCalculate = new System.Windows.Forms.RichTextBox();
             this.lbResultEffectivity = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -93,7 +94,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.richTextBox1);
+            this.groupBox1.Controls.Add(this.richTextBoxResultDocument);
+            this.groupBox1.Controls.Add(this.richTextBoxResultCalculate);
             this.groupBox1.Controls.Add(this.lbResultEffectivity);
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.label16);
@@ -131,13 +133,23 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Расчёт";
             // 
-            // richTextBox1
+            // richTextBoxResultDocument
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(183, 510);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(379, 57);
-            this.richTextBox1.TabIndex = 14;
-            this.richTextBox1.Text = "";
+            this.richTextBoxResultDocument.Location = new System.Drawing.Point(398, 89);
+            this.richTextBoxResultDocument.Name = "richTextBoxResultDocument";
+            this.richTextBoxResultDocument.Size = new System.Drawing.Size(164, 57);
+            this.richTextBoxResultDocument.TabIndex = 14;
+            this.richTextBoxResultDocument.Text = "";
+            this.richTextBoxResultDocument.Visible = false;
+            // 
+            // richTextBoxResultCalculate
+            // 
+            this.richTextBoxResultCalculate.Location = new System.Drawing.Point(398, 26);
+            this.richTextBoxResultCalculate.Name = "richTextBoxResultCalculate";
+            this.richTextBoxResultCalculate.Size = new System.Drawing.Size(164, 57);
+            this.richTextBoxResultCalculate.TabIndex = 14;
+            this.richTextBoxResultCalculate.Text = "";
+            this.richTextBoxResultCalculate.Visible = false;
             // 
             // lbResultEffectivity
             // 
@@ -496,8 +508,10 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(617, 732);
+            this.MaximumSize = new System.Drawing.Size(617, 800);
+            this.MinimumSize = new System.Drawing.Size(617, 800);
             this.Name = "ResultForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Форма результата";
@@ -556,7 +570,8 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Label lbResultEffectivity;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox richTextBoxResultCalculate;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.RichTextBox richTextBoxResultDocument;
     }
 }

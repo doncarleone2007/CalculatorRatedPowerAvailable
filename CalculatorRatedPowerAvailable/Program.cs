@@ -1,5 +1,8 @@
+using CalculatorRatedPowerAvailable.Helper.Encrypts;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,6 +18,7 @@ namespace CalculatorRatedPowerAvailable
         [STAThread]
         static void Main()
         {
+            var ss = EncryptHelper.Encrypt(DateTime.Now.AddDays(2).ToString());
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -30,7 +34,7 @@ namespace CalculatorRatedPowerAvailable
             splashForm.Close();
             splashForm.Dispose();
 
-            Application.Run(new ResultForm());
+            Application.Run(new CentralForm());
         }
     }
 }

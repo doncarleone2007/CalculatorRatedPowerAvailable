@@ -1,5 +1,6 @@
 ﻿using CalculatorRatedPowerAvailable.Logics.Models;
 using Spire.Doc;
+using Spire.Doc.Documents;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,70 +24,54 @@ namespace CalculatorRatedPowerAvailable
 
         private void BtnDownloadCalculateWord_Click(object sender, EventArgs e)
         {
-            if (openFileDialog1.ShowDialog() == DialogResult.Cancel)
-                return;
-            // получаем выбранный файл
-            string filename = openFileDialog1.FileName;
-
-            //initialize word object
-            var templatePath = Path.Combine(Environment.CurrentDirectory, "calculateTemplate.docx");
-            if (!File.Exists(templatePath))
-            {
-                MessageBox.Show("Не найден шаблон для создания расчета");
-                return;
-            }
-
-
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.InitialDirectory = @"C:\";
             saveFileDialog1.Title = "Save Word Files";
-            saveFileDialog1.CheckFileExists = true;
-            saveFileDialog1.CheckPathExists = true;
+            //saveFileDialog1.CreatePrompt = true;
+            saveFileDialog1.OverwritePrompt = true;
+            //saveFileDialog1.CheckFileExists = true;
+            //saveFileDialog1.CheckPathExists = true;
             saveFileDialog1.DefaultExt = "docx";
-            saveFileDialog1.Filter = "Text files (*.docx)|*.docx";
+            saveFileDialog1.Filter = "Word files (*.docx)|*.docx";
             saveFileDialog1.FilterIndex = 2;
             saveFileDialog1.RestoreDirectory = true;
+            
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                var document = new Document();
-                document.LoadRtf(templatePath);
-                //get strings to replace
-                Dictionary<string, string> dictReplace = GetReplaceDictionary();
-                //Replace text
-                foreach (KeyValuePair<string, string> kvp in dictReplace)
-                {
-                    document.Replace(kvp.Key, kvp.Value, true, true);
-                }
-                //Save doc file.
-                document.SaveToFile(Path.Combine(Environment.CurrentDirectory, $"{saveFileDialog1.FileName}.docx"), FileFormat.Docx);
+                Document doc = new Document();
+                Section section = doc.AddSection();
+                Paragraph Para = section.AddParagraph();
+                Para.AppendRTF(richTextBoxResultCalculate.Rtf);
+
+                doc.SaveToFile(saveFileDialog1.FileName, FileFormat.Docx);
                 //Convert to PDF
                 //document.SaveToFile(pdfPath, FileFormat.PDF);
-                MessageBox.Show("Создан результат расчёта в Word файле", "doc processing", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                document.Close();
+                MessageBox.Show("Создан результат расчёта в Word файле", "Выполнен процесс", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                doc.Close();
             }
         }
 
-        Dictionary<string, string> GetReplaceDictionary()
+        Dictionary<string, string> GetReplaceResultCalculateDictionary()
         {
             Dictionary<string, string> replaceDict = new Dictionary<string, string>();
-            //replaceDict.Add("#msm#", Result.Msantimeter.ToString());
-            //replaceDict.Add("#bigr#", Result.R.ToString());
-            //replaceDict.Add("#smallk#", Result.K.ToString());
-            //replaceDict.Add("#smallkcomment#", Result.IsCalculateK? "рассчитанное значение":string.Empty);
-            //replaceDict.Add("#had#", Result.Had.ToString());
-            //replaceDict.Add("#psm#", Result.Psantimeter.ToString());
-            //replaceDict.Add("#bigg#", Result.G.ToString());
-            //replaceDict.Add("#ndga#", Result.Ndga.ToString());
+            replaceDict.Add("#msm#", Result.Msantimeter.ToString());
+            replaceDict.Add("#bigr#", Result.R.ToString());
+            replaceDict.Add("#smallk#", Result.K.ToString());
+            replaceDict.Add("#smallkcomment#", Result.IsCalculateK ? "рассчитанное значение" : string.Empty);
+            replaceDict.Add("#had#", Result.Had.ToString());
+            replaceDict.Add("#psm#", Result.Psantimeter.ToString());
+            replaceDict.Add("#bigg#", Result.G.ToString());
+            replaceDict.Add("#ndga#", Result.Ndga.ToString());
 
 
-            replaceDict.Add("#msm#", "1233");
-            replaceDict.Add("#bigr#", "123ss3");
-            replaceDict.Add("#smallk#", "123gdfgd3");
-            replaceDict.Add("#smallkcomment#", "рассчитанное значение");
-            replaceDict.Add("#had#", "123cxcxcxcxc3");
-            replaceDict.Add("#psm#", "1ppppp233");
-            replaceDict.Add("#bigg#", "123GGGGGG3");
-            replaceDict.Add("#ndga#", "nddndndndndnd");
+            //replaceDict.Add("#msm#", "1233");
+            //replaceDict.Add("#bigr#", "123ss3");
+            //replaceDict.Add("#smallk#", "123gdfgd3");
+            //replaceDict.Add("#smallkcomment#", "рассчитанное значение");
+            //replaceDict.Add("#had#", "123cxcxcxcxc3");
+            //replaceDict.Add("#psm#", "1ppppp233");
+            //replaceDict.Add("#bigg#", "123GGGGGG3");
+            //replaceDict.Add("#ndga#", "nddndndndndnd");
 
             return replaceDict;
         }
@@ -111,10 +96,15 @@ namespace CalculatorRatedPowerAvailable
 
         private void ResultForm_Load(object sender, EventArgs e)
         {
+            SetRtfToRichtextBoxResultCalculate();
+        }
+
+        private void SetRtfToRichtextBoxResultCalculate()
+        {
             var document = new Document();
             document.LoadRtf(Path.Combine(Environment.CurrentDirectory, "calculateTemplate.rtf"));
             //get strings to replace
-            Dictionary<string, string> dictReplace = GetReplaceDictionary();
+            Dictionary<string, string> dictReplace = GetReplaceResultCalculateDictionary();
             //Replace text
             foreach (KeyValuePair<string, string> kvp in dictReplace)
             {
@@ -124,7 +114,7 @@ namespace CalculatorRatedPowerAvailable
             document.SaveToFile(Path.Combine(Environment.CurrentDirectory, $"resultCalculate.rtf"), FileFormat.Rtf);
             document.Close();
 
-            richTextBox1.LoadFile(Path.Combine(Environment.CurrentDirectory, $"resultCalculate.rtf"));
+            richTextBoxResultCalculate.LoadFile(Path.Combine(Environment.CurrentDirectory, $"resultCalculate.rtf"));
         }
     }
 }

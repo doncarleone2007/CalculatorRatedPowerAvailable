@@ -15,6 +15,16 @@ namespace CalculatorRatedPowerAvailable.Logics.Models
         /// <summary>
         /// 
         /// </summary>
+        public string GrsName { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string SubGrsName { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public decimal Pvxod { get; set; }
 
         /// <summary>
@@ -155,6 +165,11 @@ namespace CalculatorRatedPowerAvailable.Logics.Models
         /// <summary>
         /// 
         /// </summary>
+        public bool IsEffectCalculate { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="Pvxod"></param>
         /// <param name="Pvixod"></param>
         /// <param name="Q"></param>
@@ -172,11 +187,13 @@ namespace CalculatorRatedPowerAvailable.Logics.Models
         /// <param name="V9"></param>
         /// <param name="V10"></param>
         /// <param name="V11"></param>
-        public Calculate(decimal pVxod, decimal pVixod, decimal q, decimal t, decimal z, decimal k, decimal v1, decimal v2, decimal v3, decimal v4, decimal v5, decimal v6, decimal v7, decimal v8, decimal v9, decimal v10, decimal v11, decimal nNominal, decimal effectProcent)
+        public Calculate(string grsName, string subGrsName, decimal pVxod, decimal pVixod, decimal q, decimal t, decimal z, decimal k, decimal v1, decimal v2, decimal v3, decimal v4, decimal v5, decimal v6, decimal v7, decimal v8, decimal v9, decimal v10, decimal v11, decimal nNominal, decimal effectProcent)
         {
+            this.GrsName = grsName;
+            this.SubGrsName = subGrsName;
+
             this.Pvxod = pVxod;
             this.Pvixod = pVixod;
-
             this.Q = q;
             this.Temperature = t;
 
@@ -202,24 +219,11 @@ namespace CalculatorRatedPowerAvailable.Logics.Models
 
         public string IsError()
         {
-            if (!Pvxod.CheckIntervalParams(0.05m, 5.5m))
-                return "Pвх параметр \"Давление газа на входе в ДГА\" несоответсвует";
+            if (string.IsNullOrWhiteSpace(GrsName))
+                return "Укажите наименование ГРС";
 
-            if (!Pvixod.CheckIntervalParams(0.1m, 2m))
-                return "Pвых параметр \"Давление газа на выходе из ДГА\" несоответсвует";
-
-            if (!Q.CheckIntervalParams(50000m, 100000000m))
-                return "Q параметр \"Расход газа по нитке\" несоответсвует";
-
-            if (!Temperature.CheckIntervalParams(10m, 90m))
-                return "t параметр \"Температура\" несоответсвует";
-
-            this.T = Temperature + 273m;
-
-            if (Z == 0)
-                this.Z = 0.882m;
-            else if (!Z.CheckIntervalParams(0.6m, 0.9999m))
-                return "z параметр \"Коэффициент сжимаемости\" несоответсвует";
+            if (string.IsNullOrWhiteSpace(SubGrsName))
+                return "Укажите наименование замерной нитки";
 
             if (V1 != 0 && !V1.CheckIntervalParams(90m, 97.9m))
                 return "V1 параметр \"Объёмная концентрация метана\" несоответсвует";
@@ -254,15 +258,11 @@ namespace CalculatorRatedPowerAvailable.Logics.Models
             if (!V11.CheckIntervalParams(0m, 0.3m))
                 return "V11 параметр \"Объёмная концентрация кислорода\" несоответсвует";
 
-            this.Msantimeter = Math.Round((V1 * MolarMassConstants.m1 + V2 * MolarMassConstants.m2 + V3 * MolarMassConstants.m3 + V4 * MolarMassConstants.m4 + V5 * MolarMassConstants.m5
-                     + V6 * MolarMassConstants.m6 + V7 * MolarMassConstants.m7 + V8 * MolarMassConstants.m8 + V9 * MolarMassConstants.m9
-                      + V10 * MolarMassConstants.m10 + V11 * MolarMassConstants.m11) / 100, 3);
 
-            this.Psantimeter = Math.Round(Msantimeter / 22.4m, 3);
-
-            this.G = Math.Round((this.Q * this.Psantimeter) / 3600, 3);
-
-            this.R = Math.Round(RConstants.R0 / this.Msantimeter, 3);
+            if (Z == 0)
+                this.Z = 0.882m;
+            else if (!Z.CheckIntervalParams(0.6m, 0.9999m))
+                return "z параметр \"Коэффициент сжимаемости\" несоответсвует";
 
             if (K == 0)
             {
@@ -275,6 +275,39 @@ namespace CalculatorRatedPowerAvailable.Logics.Models
                 this.IsCalculateK = false;
 
 
+            if (!Pvxod.CheckIntervalParams(0.05m, 5.5m))
+                return "Pвх параметр \"Давление газа на входе в ДГА\" несоответсвует";
+
+            if (!Pvixod.CheckIntervalParams(0.1m, 2m))
+                return "Pвых параметр \"Давление газа на выходе из ДГА\" несоответсвует";
+
+            if (!Q.CheckIntervalParams(5000m, 10000000m))
+                return "Q параметр \"Расход газа по нитке\" несоответсвует";
+
+            if (!Temperature.CheckIntervalParams(10m, 90m))
+                return "t параметр \"Температура\" несоответсвует";
+
+            if ((Nnominal > 0 && EffectProcent == 0) || (Nnominal == 0 && EffectProcent > 0))
+                return "Укажите Nnominal и Procent, чтобы узнать эффективность расчета";
+
+            CalculateParams();
+            return string.Empty;
+        }
+
+        private void CalculateParams()
+        {
+            this.T = Temperature + 273m;
+
+            this.Msantimeter = Math.Round((V1 * MolarMassConstants.m1 + V2 * MolarMassConstants.m2 + V3 * MolarMassConstants.m3 + V4 * MolarMassConstants.m4 + V5 * MolarMassConstants.m5
+                     + V6 * MolarMassConstants.m6 + V7 * MolarMassConstants.m7 + V8 * MolarMassConstants.m8 + V9 * MolarMassConstants.m9
+                      + V10 * MolarMassConstants.m10 + V11 * MolarMassConstants.m11) / 100, 3);
+
+            this.Psantimeter = Math.Round(Msantimeter / 22.4m, 3);
+
+            this.G = Math.Round((this.Q * this.Psantimeter) / 3600, 3);
+
+            this.R = Math.Round(RConstants.R0 / this.Msantimeter, 3);
+
             var powResult = Math.Pow(Convert.ToDouble((this.Pvixod / this.Pvxod)), Convert.ToDouble((this.K - 1) / this.K));
 
             this.Had = Math.Round((K / (K - 1)) * this.Z * this.R * this.T * (1 - Convert.ToDecimal(powResult)), 3);
@@ -283,7 +316,7 @@ namespace CalculatorRatedPowerAvailable.Logics.Models
 
             this.ResultEffectProcent = Math.Round((100 * this.Nnominal) / this.Ndga, 3);
 
-            return string.Empty;
+            this.IsEffectCalculate = this.ResultEffectProcent >= this.EffectProcent;
         }
     }
 }

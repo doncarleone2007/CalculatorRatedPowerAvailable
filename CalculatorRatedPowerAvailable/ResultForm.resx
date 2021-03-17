@@ -294,4 +294,7 @@
         bKy2nJDaISG1Q0Jqh4TUDgmpHRJSOySkdkhI7ZCQ2h273X/iZV9qkXF91gAAAABJRU5ErkJggg==
 </value>
   </data>
+  <metadata name="$this.TrayHeight" type="System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>25</value>
+  </metadata>
 </root>
