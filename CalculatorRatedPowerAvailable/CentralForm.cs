@@ -47,6 +47,22 @@ namespace CalculatorRatedPowerAvailable
             txtTemperature.KeyPress += Value_KeyPress;
             txtQ.KeyPress += Value_KeyPress;
             txtNnominal.KeyPress += Value_KeyPress;
+
+            this.FormClosing += CentralForm_FormClosing;
+        }
+
+        private void CentralForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            
+            if(MessageBox.Show(this, "Действительно хотите выйти?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)==DialogResult.Yes)
+            {
+                Environment.Exit(0);
+            }
+            Application.DoEvents();
+
+            //MessageBox msg = new MessageBox("Действительно хотите выйти?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            //msg.
         }
 
         private void ToolStripMenuItem2_Click(object sender, EventArgs e)
@@ -57,7 +73,10 @@ namespace CalculatorRatedPowerAvailable
 
         private void ToolStripMenuItem3_Click(object sender, EventArgs e)
         {
-            Environment.Exit(0);
+            if (MessageBox.Show(this, "Действительно хотите выйти?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                Environment.Exit(0);
+            }
         }
 
         private void CheckLicense()
@@ -94,7 +113,7 @@ namespace CalculatorRatedPowerAvailable
 
         private void BtnCalculate_Click(object sender, EventArgs e)
         {
-            if(!string.IsNullOrWhiteSpace(UnCorrectLicenseText))
+            if (!string.IsNullOrWhiteSpace(UnCorrectLicenseText))
             {
                 MessageBox.Show(UnCorrectLicenseText);
                 Environment.Exit(0);

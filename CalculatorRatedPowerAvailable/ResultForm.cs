@@ -19,11 +19,7 @@ namespace CalculatorRatedPowerAvailable
         public ResultForm()
         {
             InitializeComponent();
-            btnDownloadCalculateWord.Click += BtnDownloadCalculateWord_Click;
-            btnDownloadDocumentationWord.Click += BtnDownloadDocumentationWord_Click;
-
-            btnDownloadCalculatePDF.Click += BtnDownloadCalculatePDF_Click;
-            btnDownloadDocumentationPDF.Click += BtnDownloadDocumentationPDF_Click;
+            
             this.Load += ResultForm_Load;
         }
 
@@ -51,7 +47,7 @@ namespace CalculatorRatedPowerAvailable
                 doc.SaveToFile(saveFileDialog1.FileName, FileFormat.PDF);
                 //Convert to PDF
                 //document.SaveToFile(pdfPath, FileFormat.PDF);
-                MessageBox.Show("Создан результат расчёта в Word файле", "Выполнен процесс", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Создан результат расчёта в PDF файле", "Выполнен процесс", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 doc.Close();
 
                 try
@@ -182,7 +178,6 @@ namespace CalculatorRatedPowerAvailable
             replaceDict.Add("#grsname#", Result.GrsName.ToString());
             replaceDict.Add("#subgrsname#", Result.SubGrsName.ToString());
             replaceDict.Add("#msm#", Result.Msantimeter.ToString());
-            replaceDict.Add("#msm#", Result.Msantimeter.ToString());
             replaceDict.Add("#bigr#", Result.R.ToString());
             replaceDict.Add("#smallk#", Result.K.ToString());
             replaceDict.Add("#smallkcomment#", Result.IsCalculateK ? "рассчитанное значение" : string.Empty);
@@ -225,6 +220,18 @@ namespace CalculatorRatedPowerAvailable
         private void ResultForm_Load(object sender, EventArgs e)
         {
             SetRtfToRichtextBoxResultCalculate();
+            SetRtfToRichtextBoxResultDocument();
+            btnClose.Click += BtnClose_Click;
+            btnDownloadCalculateWord.Click += BtnDownloadCalculateWord_Click;
+            btnDownloadDocumentationWord.Click += BtnDownloadDocumentationWord_Click;
+
+            btnDownloadCalculatePDF.Click += BtnDownloadCalculatePDF_Click;
+            btnDownloadDocumentationPDF.Click += BtnDownloadDocumentationPDF_Click;
+        }
+
+        private void BtnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void SetRtfToRichtextBoxResultCalculate()

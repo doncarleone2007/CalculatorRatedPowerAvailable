@@ -68,7 +68,7 @@
             this.btnDownloadCalculatePDF = new System.Windows.Forms.Button();
             this.btnDownloadDocumentationPDF = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button6 = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -474,6 +474,7 @@
             this.btnDownloadDocumentationPDF.TabIndex = 3;
             this.btnDownloadDocumentationPDF.Text = "Скачать документацию";
             this.btnDownloadDocumentationPDF.UseVisualStyleBackColor = true;
+            this.btnDownloadDocumentationPDF.Visible = false;
             // 
             // groupBox3
             // 
@@ -486,14 +487,14 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "PDF файл";
             // 
-            // button6
+            // btnClose
             // 
-            this.button6.Location = new System.Drawing.Point(12, 715);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(575, 29);
-            this.button6.TabIndex = 5;
-            this.button6.Text = "Закрыть";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnClose.Location = new System.Drawing.Point(12, 715);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(575, 29);
+            this.btnClose.TabIndex = 5;
+            this.btnClose.Text = "Закрыть";
+            this.btnClose.UseVisualStyleBackColor = true;
             // 
             // openFileDialog1
             // 
@@ -504,7 +505,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(599, 753);
-            this.Controls.Add(this.button6);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -567,7 +568,7 @@
         private System.Windows.Forms.Button btnDownloadCalculatePDF;
         private System.Windows.Forms.Button btnDownloadDocumentationPDF;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lbResultEffectivity;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.RichTextBox richTextBoxResultCalculate;
