@@ -154,10 +154,11 @@
             // lbResultEffectivity
             // 
             this.lbResultEffectivity.AutoSize = true;
+            this.lbResultEffectivity.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbResultEffectivity.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbResultEffectivity.Location = new System.Drawing.Point(10, 547);
+            this.lbResultEffectivity.Location = new System.Drawing.Point(10, 538);
             this.lbResultEffectivity.Name = "lbResultEffectivity";
-            this.lbResultEffectivity.Size = new System.Drawing.Size(50, 20);
+            this.lbResultEffectivity.Size = new System.Drawing.Size(76, 31);
             this.lbResultEffectivity.TabIndex = 13;
             this.lbResultEffectivity.Text = "label8";
             // 

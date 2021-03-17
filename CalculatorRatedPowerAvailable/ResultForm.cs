@@ -213,7 +213,8 @@ namespace CalculatorRatedPowerAvailable
             lbPsm.Text = Result.Psantimeter.ToString();
             lbG.Text = Result.G.ToString();
             lbNdga.Text = Result.Ndga.ToString();
-
+            lbResultEffectivity.Text = Result.IsEffectCalculate ? "Эффективный расчёт" : "Неэффективный расчёт";
+            lbResultEffectivity.ForeColor = Result.IsEffectCalculate ? Color.Green : Color.Red;
             this.Load += ResultForm_Load;
         }
 
