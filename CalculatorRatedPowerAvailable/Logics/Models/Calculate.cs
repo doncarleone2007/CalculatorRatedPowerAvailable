@@ -130,6 +130,11 @@ namespace CalculatorRatedPowerAvailable.Logics.Models
         /// <summary>
         /// 
         /// </summary>
+        public bool IsPsantimeter { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public decimal R { get; set; }
 
         /// <summary>
@@ -187,7 +192,7 @@ namespace CalculatorRatedPowerAvailable.Logics.Models
         /// <param name="V9"></param>
         /// <param name="V10"></param>
         /// <param name="V11"></param>
-        public Calculate(string grsName, string subGrsName, decimal pVxod, decimal pVixod, decimal q, decimal t, decimal z, decimal k, decimal v1, decimal v2, decimal v3, decimal v4, decimal v5, decimal v6, decimal v7, decimal v8, decimal v9, decimal v10, decimal v11, decimal nNominal, decimal effectProcent)
+        public Calculate(string grsName, string subGrsName, decimal pSm, decimal pVxod, decimal pVixod, decimal q, decimal t, decimal z, decimal k, decimal v1, decimal v2, decimal v3, decimal v4, decimal v5, decimal v6, decimal v7, decimal v8, decimal v9, decimal v10, decimal v11, decimal nNominal, decimal effectProcent)
         {
             this.GrsName = grsName;
             this.SubGrsName = subGrsName;
@@ -212,6 +217,9 @@ namespace CalculatorRatedPowerAvailable.Logics.Models
             this.V10 = v10;
             this.V11 = v11;
             this.R = 0m;
+            this.Psantimeter = pSm;
+
+            this.IsPsantimeter = this.Psantimeter > 0m;
 
             this.Nnominal = nNominal;
             this.EffectProcent = effectProcent;
@@ -225,63 +233,70 @@ namespace CalculatorRatedPowerAvailable.Logics.Models
             if (string.IsNullOrWhiteSpace(SubGrsName))
                 return "Укажите наименование замерной нитки";
 
-            if (V1 != 0 && !V1.CheckIntervalParams(90m, 97.9m))
-                return "V1 параметр \"Объёмная концентрация метана\" несоответсвует";
+            if (Psantimeter > 0)
+            {
+                if (V1 + V2 + V3 + V9 + V10 + V11 > 0)
+                    CalculateSmallK();
+                else
+                    K = SmallKConstants.KAll;
+            }
+            else
+            {
+                if (V1 != 0 && !V1.CheckIntervalParams(90m, 97.9m))
+                    return "V1 параметр \"Объёмная концентрация метана\" несоответсвует";
 
-            if (V2 != 0 && !V2.CheckIntervalParams(0.75m, 4.75m))
-                return "V2 параметр \"Объёмная концентрация этана\" несоответсвует";
+                if (V2 != 0 && !V2.CheckIntervalParams(0.75m, 4.75m))
+                    return "V2 параметр \"Объёмная концентрация этана\" несоответсвует";
 
-            if (V3 != 0 && !V3.CheckIntervalParams(0.30m, 3.5m))
-                return "V3 параметр \"Объёмная концентрация пропана\" несоответсвует";
+                if (V3 != 0 && !V3.CheckIntervalParams(0.30m, 3.5m))
+                    return "V3 параметр \"Объёмная концентрация пропана\" несоответсвует";
 
-            if (V4 != 0 && !V4.CheckIntervalParams(0.01m, 0.5m))
-                return "V4 параметр \"Объёмная концентрация i-бутана\" несоответсвует";
+                if (V4 != 0 && !V4.CheckIntervalParams(0.01m, 0.5m))
+                    return "V4 параметр \"Объёмная концентрация i-бутана\" несоответсвует";
 
-            if (!V5.CheckIntervalParams(0m, 0.4m))
-                return "V5 параметр \"Объёмная концентрация n-бутана\" несоответсвует";
+                if (!V5.CheckIntervalParams(0m, 0.4m))
+                    return "V5 параметр \"Объёмная концентрация n-бутана\" несоответсвует";
 
-            if (!V6.CheckIntervalParams(0m, 0.2m))
-                return "V6 параметр \"Объёмная концентрация  i-пентана\" несоответсвует";
+                if (!V6.CheckIntervalParams(0m, 0.2m))
+                    return "V6 параметр \"Объёмная концентрация  i-пентана\" несоответсвует";
 
-            if (!V7.CheckIntervalParams(0m, 0.15m))
-                return "V7 параметр \"Объёмная концентрация  n-пентана\" несоответсвует";
+                if (!V7.CheckIntervalParams(0m, 0.15m))
+                    return "V7 параметр \"Объёмная концентрация  n-пентана\" несоответсвует";
 
-            if (!V8.CheckIntervalParams(0m, 0.3m))
-                return "V8 параметр \"Объёмная концентрация гексана\" несоответсвует";
+                if (!V8.CheckIntervalParams(0m, 0.3m))
+                    return "V8 параметр \"Объёмная концентрация гексана\" несоответсвует";
 
-            if (V9 != 0 && !V9.CheckIntervalParams(0.1m, 2.5m))
-                return "V9 параметр \"Объёмная концентрация углекислого газа\" несоответсвует";
+                if (V9 != 0 && !V9.CheckIntervalParams(0.1m, 2.5m))
+                    return "V9 параметр \"Объёмная концентрация углекислого газа\" несоответсвует";
 
-            if (V10 != 0 && !V10.CheckIntervalParams(0.2m, 1.3m))
-                return "V10 параметр \"Объёмная концентрация азота\" несоответсвует";
+                if (V10 != 0 && !V10.CheckIntervalParams(0.2m, 1.3m))
+                    return "V10 параметр \"Объёмная концентрация азота\" несоответсвует";
 
-            if (!V11.CheckIntervalParams(0m, 0.3m))
-                return "V11 параметр \"Объёмная концентрация кислорода\" несоответсвует";
+                if (!V11.CheckIntervalParams(0m, 0.3m))
+                    return "V11 параметр \"Объёмная концентрация кислорода\" несоответсвует";
 
+                if (K == 0)
+                {
+                    CalculateSmallK();
+                }
+                else if (!K.CheckIntervalParams(1.24m, 2.1m))
+                    return "k параметр \"Объёмный показатель адиабаты\" несоответсвует";
+                else
+                    this.IsCalculateK = false;
+            }
 
             if (Z == 0)
                 this.Z = 0.882m;
             else if (!Z.CheckIntervalParams(0.6m, 0.9999m))
                 return "z параметр \"Коэффициент сжимаемости\" несоответсвует";
 
-            if (K == 0)
-            {
-                this.IsCalculateK = true;
-                K = Math.Round(SmallKConstants.kV1 * V1 + SmallKConstants.kV2 * V2 + SmallKConstants.kV3 * V3 + SmallKConstants.kV9 * V9 + SmallKConstants.kV10 * V10 + SmallKConstants.kV11 * V11, 3);
-            }
-            else if (!K.CheckIntervalParams(1.24m, 2.1m))
-                return "k параметр \"Объёмный показатель адиабаты\" несоответсвует";
-            else
-                this.IsCalculateK = false;
-
-
-            if (!Pvxod.CheckIntervalParams(0.05m, 5.5m))
+            if (!Pvxod.CheckIntervalParams(0.01m, 6m))
                 return "Pвх параметр \"Давление газа на входе в ДГА\" несоответсвует";
 
-            if (!Pvixod.CheckIntervalParams(0.1m, 2m))
+            if (!Pvixod.CheckIntervalParams(0.01m, 4m))
                 return "Pвых параметр \"Давление газа на выходе из ДГА\" несоответсвует";
 
-            if (!Q.CheckIntervalParams(5000m, 10000000m))
+            if (!Q.CheckIntervalParams(100m, 100000000m))
                 return "Q параметр \"Расход газа по нитке\" несоответсвует";
 
             if (!Temperature.CheckIntervalParams(10m, 90m))
@@ -294,15 +309,31 @@ namespace CalculatorRatedPowerAvailable.Logics.Models
             return string.Empty;
         }
 
+        private void CalculateSmallK()
+        {
+            this.IsCalculateK = true;
+            K = Math.Round((SmallKConstants.kV1 * V1 + SmallKConstants.kV2 * V2 + SmallKConstants.kV3 * V3 + SmallKConstants.kV9 * V9 + SmallKConstants.kV10 * V10 + SmallKConstants.kV11 * V11) / 100, 3);
+        }
+
         private void CalculateParams()
         {
             this.T = Temperature + 273m;
 
-            this.Msantimeter = Math.Round((V1 * MolarMassConstants.m1 + V2 * MolarMassConstants.m2 + V3 * MolarMassConstants.m3 + V4 * MolarMassConstants.m4 + V5 * MolarMassConstants.m5
-                     + V6 * MolarMassConstants.m6 + V7 * MolarMassConstants.m7 + V8 * MolarMassConstants.m8 + V9 * MolarMassConstants.m9
-                      + V10 * MolarMassConstants.m10 + V11 * MolarMassConstants.m11) / 100, 3);
+            if(IsPsantimeter)
+            {
+                this.Msantimeter = Math.Round(Psantimeter * 22.4m, 3);
+            }
+            else
+            {
+                this.Msantimeter = Math.Round((V1 * MolarMassConstants.m1 + V2 * MolarMassConstants.m2 + V3 * MolarMassConstants.m3 + V4 * MolarMassConstants.m4 + V5 * MolarMassConstants.m5
+                                                 + V6 * MolarMassConstants.m6 + V7 * MolarMassConstants.m7 + V8 * MolarMassConstants.m8 + V9 * MolarMassConstants.m9
+                                                  + V10 * MolarMassConstants.m10 + V11 * MolarMassConstants.m11) / 100, 3);
 
-            this.Psantimeter = Math.Round(Msantimeter / 22.4m, 3);
+                this.Psantimeter = Math.Round(Msantimeter / 22.4m, 3);
+            }
+            
+
+            
 
             this.G = Math.Round((this.Q * this.Psantimeter) / 3600, 3);
 

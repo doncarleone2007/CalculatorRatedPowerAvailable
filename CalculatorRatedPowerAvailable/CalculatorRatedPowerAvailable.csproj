@@ -20,11 +20,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Update="Properties\SystemLicense.Designer.cs">
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>SystemLicense.settings</DependentUpon>
-    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -32,13 +27,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Properties\SystemLicense.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>SystemLicense.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
 
 </Project>

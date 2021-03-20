@@ -19,7 +19,7 @@ namespace CalculatorRatedPowerAvailable
         public ResultForm()
         {
             InitializeComponent();
-            
+
             this.Load += ResultForm_Load;
         }
 
@@ -147,7 +147,7 @@ namespace CalculatorRatedPowerAvailable
             saveFileDialog1.Filter = "Word files (*.docx)|*.docx";
             saveFileDialog1.FilterIndex = 2;
             saveFileDialog1.RestoreDirectory = true;
-            
+
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 Document doc = new Document();
@@ -174,7 +174,8 @@ namespace CalculatorRatedPowerAvailable
         Dictionary<string, string> GetReplaceResultDictionary()
         {
             Dictionary<string, string> replaceDict = new Dictionary<string, string>();
-            
+
+            replaceDict.Add("#psmtext#", Result.IsPsantimeter?"была передана для расчёта":"расчитается по формуле");
             replaceDict.Add("#grsname#", Result.GrsName.ToUpperInvariant().ToString());
             replaceDict.Add("#subgrsname#", Result.SubGrsName.ToUpperInvariant().ToString());
             replaceDict.Add("#msm#", Result.Msantimeter.ToString());
@@ -186,15 +187,6 @@ namespace CalculatorRatedPowerAvailable
             replaceDict.Add("#bigg#", Result.G.ToString());
             replaceDict.Add("#ndga#", Result.Ndga.ToString());
 
-
-            //replaceDict.Add("#msm#", "1233");
-            //replaceDict.Add("#bigr#", "123ss3");
-            //replaceDict.Add("#smallk#", "123gdfgd3");
-            //replaceDict.Add("#smallkcomment#", "рассчитанное значение");
-            //replaceDict.Add("#had#", "123cxcxcxcxc3");
-            //replaceDict.Add("#psm#", "1ppppp233");
-            //replaceDict.Add("#bigg#", "123GGGGGG3");
-            //replaceDict.Add("#ndga#", "nddndndndndnd");
 
             return replaceDict;
         }
@@ -213,13 +205,23 @@ namespace CalculatorRatedPowerAvailable
             lbPsm.Text = Result.Psantimeter.ToString();
             lbG.Text = Result.G.ToString();
             lbNdga.Text = Result.Ndga.ToString();
-            lbResultEffectivity.Text = Result.IsEffectCalculate ? "Эффективный расчёт" : "Неэффективный расчёт";
-            lbResultEffectivity.ForeColor = Result.IsEffectCalculate ? Color.Green : Color.Red;
+            if (model.Nnominal > 0m || model.EffectProcent > 0m)
+            {
+                lbResultEffectivity.Text = Result.IsEffectCalculate ? "Эффективный расчёт" : "Неэффективный расчёт";
+                lbResultEffectivity.ForeColor = Result.IsEffectCalculate ? Color.Green : Color.Red;
+            }
+            else
+                lbResultEffectivity.Visible = false;
+
+
             this.Load += ResultForm_Load;
         }
 
         private void ResultForm_Load(object sender, EventArgs e)
         {
+            picBoxMsm.Visible = !Result.IsPsantimeter;
+            picBoxMsmWithPsm.Visible = Result.IsPsantimeter;
+
             SetRtfToRichtextBoxResultCalculate();
             SetRtfToRichtextBoxResultDocument();
             btnClose.Click += BtnClose_Click;
@@ -238,7 +240,7 @@ namespace CalculatorRatedPowerAvailable
         private void SetRtfToRichtextBoxResultCalculate()
         {
             var document = new Document();
-            document.LoadRtf(Path.Combine(Environment.CurrentDirectory, "calculateTemplate.rtf"));
+            document.LoadRtf(Path.Combine(Environment.CurrentDirectory, Result.IsPsantimeter ? "calculateWithPSmTemplate.rtf" : "calculateTemplate.rtf"));
             //get strings to replace
             Dictionary<string, string> dictReplace = GetReplaceResultDictionary();
             //Replace text
@@ -256,7 +258,7 @@ namespace CalculatorRatedPowerAvailable
         private void SetRtfToRichtextBoxResultDocument()
         {
             var document = new Document();
-            document.LoadRtf(Path.Combine(Environment.CurrentDirectory, "documentTemplate.rtf"));
+            document.LoadRtf(Path.Combine(Environment.CurrentDirectory, Result.IsPsantimeter ? "documentWithPSmTemplate.rtf" : "documentTemplate.rtf"));
             //get strings to replace
             Dictionary<string, string> dictReplace = GetReplaceResultDictionary();
             //Replace text

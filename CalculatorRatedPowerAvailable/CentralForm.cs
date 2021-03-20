@@ -47,6 +47,7 @@ namespace CalculatorRatedPowerAvailable
             txtTemperature.KeyPress += Value_KeyPress;
             txtQ.KeyPress += Value_KeyPress;
             txtNnominal.KeyPress += Value_KeyPress;
+            txtPsm.KeyPress += Value_KeyPress;
 
             this.FormClosing += CentralForm_FormClosing;
         }
@@ -119,7 +120,7 @@ namespace CalculatorRatedPowerAvailable
                 Environment.Exit(0);
             }
 
-            var calculate = new Calculate(txtGrsName.Text, txtSubGrsName.Text, txtPvxod.Text.ToDecimal(), txtPvixod.Text.ToDecimal(), txtQ.Text.ToDecimal(), txtTemperature.Text.ToDecimal(),
+            var calculate = new Calculate(txtGrsName.Text, txtSubGrsName.Text, txtPsm.Text.ToDecimal(), txtPvxod.Text.ToDecimal(), txtPvixod.Text.ToDecimal(), txtQ.Text.ToDecimal(), txtTemperature.Text.ToDecimal(),
                                           txtZ.Text.ToDecimal(), txtSmallK.Text.ToDecimal(), txtV1.Text.ToDecimal(), txtV2.Text.ToDecimal(), txtV3.Text.ToDecimal(), txtV4.Text.ToDecimal(),
                                           txtV5.Text.ToDecimal(), txtV6.Text.ToDecimal(), txtV7.Text.ToDecimal(), txtV8.Text.ToDecimal(), txtV9.Text.ToDecimal(), txtV10.Text.ToDecimal(),
                                           txtV11.Text.ToDecimal(), txtNnominal.Text.ToDecimal(), nupProcent.Value);
@@ -161,22 +162,31 @@ namespace CalculatorRatedPowerAvailable
             txtPvixod.Text =
             txtTemperature.Text =
             txtQ.Text =
+            txtPsm.Text =
             txtNnominal.Text = string.Empty;
             nupProcent.Value = 0m;
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            lbDate.Text = $"{DateTime.Now}";
+            toolStripStatusLabel1.Text = $"Время: {DateTime.Now}";
         }
 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             CheckLicense();
-            lbStatusLicense.Text = !string.IsNullOrWhiteSpace(UnCorrectLicenseText) ? UnCorrectLicenseText : string.Empty;
-
-            lbEndLicenseDate.Text = string.IsNullOrWhiteSpace(lbStatusLicense.Text) ? $"Дата окончания лицензии до {EndLicenseDate.ToString("dd MMMM yyyyг. HHч. mmм.")}" : string.Empty;
+            
+            if(!string.IsNullOrWhiteSpace(UnCorrectLicenseText))
+            {
+                toolStripStatusLabel2.Text = UnCorrectLicenseText;
+                toolStripStatusLabel2.ForeColor = Color.Red;
+            }
+            else
+            {
+                toolStripStatusLabel2.Text = $"Дата окончания лицензии до {EndLicenseDate.ToString("dd MMMM yyyyг. HHч. mmм.")}";
+                toolStripStatusLabel2.ForeColor = Color.Black;
+            }
         }
     }
 }

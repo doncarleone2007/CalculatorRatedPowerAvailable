@@ -12,5 +12,7 @@ namespace CalculatorRatedPowerAvailable.Helper.Consts
         public const decimal kV9 = 1.2232m;
         public const decimal kV10 = 1.4192m;
         public const decimal kV11 = 1.4085m;
+
+        public const decimal KAll = 1.3m;
     }
 }

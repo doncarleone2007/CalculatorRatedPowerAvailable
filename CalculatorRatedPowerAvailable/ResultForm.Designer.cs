@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ResultForm));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.picBoxMsmWithPsm = new System.Windows.Forms.PictureBox();
             this.richTextBoxResultDocument = new System.Windows.Forms.RichTextBox();
             this.richTextBoxResultCalculate = new System.Windows.Forms.RichTextBox();
             this.lbResultEffectivity = new System.Windows.Forms.Label();
@@ -61,7 +62,7 @@
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.picBoxMsm = new System.Windows.Forms.PictureBox();
             this.btnDownloadCalculateWord = new System.Windows.Forms.Button();
             this.btnDownloadDocumentationWord = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -73,12 +74,13 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxMsmWithPsm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxMsm)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
@@ -94,6 +96,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.picBoxMsmWithPsm);
             this.groupBox1.Controls.Add(this.richTextBoxResultDocument);
             this.groupBox1.Controls.Add(this.richTextBoxResultCalculate);
             this.groupBox1.Controls.Add(this.lbResultEffectivity);
@@ -124,7 +127,7 @@
             this.groupBox1.Controls.Add(this.pictureBox5);
             this.groupBox1.Controls.Add(this.pictureBox4);
             this.groupBox1.Controls.Add(this.pictureBox3);
-            this.groupBox1.Controls.Add(this.pictureBox2);
+            this.groupBox1.Controls.Add(this.picBoxMsm);
             this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
@@ -132,6 +135,15 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Расчёт";
+            // 
+            // picBoxMsmWithPsm
+            // 
+            this.picBoxMsmWithPsm.Image = ((System.Drawing.Image)(resources.GetObject("picBoxMsmWithPsm.Image")));
+            this.picBoxMsmWithPsm.Location = new System.Drawing.Point(6, 36);
+            this.picBoxMsmWithPsm.Name = "picBoxMsmWithPsm";
+            this.picBoxMsmWithPsm.Size = new System.Drawing.Size(171, 43);
+            this.picBoxMsmWithPsm.TabIndex = 15;
+            this.picBoxMsmWithPsm.TabStop = false;
             // 
             // richTextBoxResultDocument
             // 
@@ -166,7 +178,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label17.Location = new System.Drawing.Point(309, 335);
+            this.label17.Location = new System.Drawing.Point(319, 335);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(15, 17);
             this.label17.TabIndex = 12;
@@ -205,7 +217,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label13.Location = new System.Drawing.Point(169, 405);
+            this.label13.Location = new System.Drawing.Point(179, 405);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(26, 28);
             this.label13.TabIndex = 8;
@@ -214,7 +226,7 @@
             // lbG
             // 
             this.lbG.AutoSize = true;
-            this.lbG.Location = new System.Drawing.Point(201, 412);
+            this.lbG.Location = new System.Drawing.Point(211, 412);
             this.lbG.Name = "lbG";
             this.lbG.Size = new System.Drawing.Size(32, 20);
             this.lbG.TabIndex = 11;
@@ -224,7 +236,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label11.Location = new System.Drawing.Point(269, 408);
+            this.label11.Location = new System.Drawing.Point(279, 408);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(43, 25);
             this.label11.TabIndex = 10;
@@ -234,7 +246,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label10.Location = new System.Drawing.Point(169, 332);
+            this.label10.Location = new System.Drawing.Point(179, 332);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(26, 28);
             this.label10.TabIndex = 8;
@@ -243,7 +255,7 @@
             // lbPsm
             // 
             this.lbPsm.AutoSize = true;
-            this.lbPsm.Location = new System.Drawing.Point(201, 339);
+            this.lbPsm.Location = new System.Drawing.Point(211, 339);
             this.lbPsm.Name = "lbPsm";
             this.lbPsm.Size = new System.Drawing.Size(49, 20);
             this.lbPsm.TabIndex = 11;
@@ -253,7 +265,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(269, 335);
+            this.label6.Location = new System.Drawing.Point(279, 335);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(48, 25);
             this.label6.TabIndex = 10;
@@ -262,7 +274,7 @@
             // lbSmallK
             // 
             this.lbSmallK.AutoSize = true;
-            this.lbSmallK.Location = new System.Drawing.Point(201, 169);
+            this.lbSmallK.Location = new System.Drawing.Point(213, 169);
             this.lbSmallK.Name = "lbSmallK";
             this.lbSmallK.Size = new System.Drawing.Size(31, 20);
             this.lbSmallK.TabIndex = 11;
@@ -272,7 +284,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label9.Location = new System.Drawing.Point(169, 162);
+            this.label9.Location = new System.Drawing.Point(182, 162);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(26, 28);
             this.label9.TabIndex = 8;
@@ -282,7 +294,7 @@
             // 
             this.lbSmallKComment.AutoSize = true;
             this.lbSmallKComment.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lbSmallKComment.Location = new System.Drawing.Point(272, 165);
+            this.lbSmallKComment.Location = new System.Drawing.Point(285, 165);
             this.lbSmallKComment.Name = "lbSmallKComment";
             this.lbSmallKComment.Size = new System.Drawing.Size(102, 25);
             this.lbSmallKComment.TabIndex = 10;
@@ -321,7 +333,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(272, 43);
+            this.label3.Location = new System.Drawing.Point(281, 43);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(86, 25);
             this.label3.TabIndex = 10;
@@ -331,7 +343,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(169, 110);
+            this.label4.Location = new System.Drawing.Point(182, 110);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(26, 28);
             this.label4.TabIndex = 8;
@@ -340,7 +352,7 @@
             // lbR
             // 
             this.lbR.AutoSize = true;
-            this.lbR.Location = new System.Drawing.Point(201, 117);
+            this.lbR.Location = new System.Drawing.Point(213, 117);
             this.lbR.Name = "lbR";
             this.lbR.Size = new System.Drawing.Size(31, 20);
             this.lbR.TabIndex = 11;
@@ -350,7 +362,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(272, 113);
+            this.label2.Location = new System.Drawing.Point(285, 113);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(83, 25);
             this.label2.TabIndex = 10;
@@ -359,7 +371,7 @@
             // lbMsm
             // 
             this.lbMsm.AutoSize = true;
-            this.lbMsm.Location = new System.Drawing.Point(201, 47);
+            this.lbMsm.Location = new System.Drawing.Point(210, 47);
             this.lbMsm.Name = "lbMsm";
             this.lbMsm.Size = new System.Drawing.Size(54, 20);
             this.lbMsm.TabIndex = 9;
@@ -369,7 +381,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(169, 40);
+            this.label1.Location = new System.Drawing.Point(181, 40);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(26, 28);
             this.label1.TabIndex = 8;
@@ -420,14 +432,14 @@
             this.pictureBox3.TabIndex = 3;
             this.pictureBox3.TabStop = false;
             // 
-            // pictureBox2
+            // picBoxMsm
             // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(6, 26);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(161, 65);
-            this.pictureBox2.TabIndex = 2;
-            this.pictureBox2.TabStop = false;
+            this.picBoxMsm.Image = ((System.Drawing.Image)(resources.GetObject("picBoxMsm.Image")));
+            this.picBoxMsm.Location = new System.Drawing.Point(6, 26);
+            this.picBoxMsm.Name = "picBoxMsm";
+            this.picBoxMsm.Size = new System.Drawing.Size(161, 65);
+            this.picBoxMsm.TabIndex = 2;
+            this.picBoxMsm.TabStop = false;
             // 
             // btnDownloadCalculateWord
             // 
@@ -520,12 +532,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxMsmWithPsm)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxMsm)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -543,7 +556,7 @@
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox picBoxMsm;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label lbNdga;
         private System.Windows.Forms.Label label14;
@@ -575,5 +588,6 @@
         private System.Windows.Forms.RichTextBox richTextBoxResultCalculate;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.RichTextBox richTextBoxResultDocument;
+        private System.Windows.Forms.PictureBox picBoxMsmWithPsm;
     }
 }

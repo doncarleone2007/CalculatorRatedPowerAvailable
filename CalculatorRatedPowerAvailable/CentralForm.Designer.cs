@@ -41,6 +41,8 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label24 = new System.Windows.Forms.Label();
             this.txtV11 = new System.Windows.Forms.TextBox();
@@ -113,9 +115,12 @@
             this.label46 = new System.Windows.Forms.Label();
             this.btnCalculate = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.lbDate = new System.Windows.Forms.Label();
-            this.lbStatusLicense = new System.Windows.Forms.Label();
-            this.lbEndLicenseDate = new System.Windows.Forms.Label();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label50 = new System.Windows.Forms.Label();
+            this.label51 = new System.Windows.Forms.Label();
+            this.label49 = new System.Windows.Forms.Label();
+            this.txtPsm = new System.Windows.Forms.TextBox();
+            this.label48 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -125,6 +130,7 @@
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupProcent)).BeginInit();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -180,7 +186,7 @@
             this.toolStripMenuItem2});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(843, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(895, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -208,10 +214,12 @@
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 588);
+            this.toolStripStatusLabel1,
+            this.toolStripStatusLabel3,
+            this.toolStripStatusLabel2});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 685);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(843, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(895, 26);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -220,6 +228,18 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(57, 20);
             this.toolStripStatusLabel1.Text = "Время:";
+            // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.AutoSize = false;
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(230, 20);
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(151, 20);
+            this.toolStripStatusLabel2.Text = "toolStripStatusLabel2";
             // 
             // groupBox2
             // 
@@ -548,7 +568,7 @@
             this.groupBox3.Controls.Add(this.label25);
             this.groupBox3.Location = new System.Drawing.Point(419, 144);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(411, 102);
+            this.groupBox3.Size = new System.Drawing.Size(464, 102);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Необъязательные поля : ";
@@ -626,7 +646,7 @@
             this.groupBox4.Controls.Add(this.label29);
             this.groupBox4.Location = new System.Drawing.Point(419, 250);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(411, 176);
+            this.groupBox4.Size = new System.Drawing.Size(464, 176);
             this.groupBox4.TabIndex = 5;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Объязательные поля :";
@@ -648,7 +668,7 @@
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(129, 20);
             this.label43.TabIndex = 4;
-            this.label43.Text = "(5000 - 10000000)";
+            this.label43.Text = "(100 - 100000000)";
             // 
             // label42
             // 
@@ -705,7 +725,7 @@
             // label37
             // 
             this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(205, 102);
+            this.label37.Location = new System.Drawing.Point(200, 102);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(65, 20);
             this.label37.TabIndex = 4;
@@ -714,20 +734,20 @@
             // label36
             // 
             this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(209, 69);
+            this.label36.Location = new System.Drawing.Point(200, 69);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(60, 20);
+            this.label36.Size = new System.Drawing.Size(68, 20);
             this.label36.TabIndex = 4;
-            this.label36.Text = "(0,1 - 2)";
+            this.label36.Text = "(0,01 - 4)";
             // 
             // label35
             // 
             this.label35.AutoSize = true;
             this.label35.Location = new System.Drawing.Point(200, 36);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(79, 20);
+            this.label35.Size = new System.Drawing.Size(68, 20);
             this.label35.TabIndex = 4;
-            this.label35.Text = "(0,05 - 5,5)";
+            this.label35.Text = "(0,01 - 6)";
             // 
             // label32
             // 
@@ -805,7 +825,7 @@
             // 
             this.btnClear.Location = new System.Drawing.Point(650, 40);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(180, 95);
+            this.btnClear.Size = new System.Drawing.Size(233, 95);
             this.btnClear.TabIndex = 6;
             this.btnClear.TabStop = false;
             this.btnClear.Text = "Очистить все";
@@ -822,7 +842,7 @@
             this.groupBox5.Controls.Add(this.label46);
             this.groupBox5.Location = new System.Drawing.Point(419, 433);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(269, 147);
+            this.groupBox5.Size = new System.Drawing.Size(464, 147);
             this.groupBox5.TabIndex = 7;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Поля для расчёта эффективности :";
@@ -830,7 +850,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(6, 89);
+            this.pictureBox1.Location = new System.Drawing.Point(200, 50);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(257, 48);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -840,7 +860,7 @@
             // label47
             // 
             this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(222, 58);
+            this.label47.Location = new System.Drawing.Point(156, 91);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(21, 20);
             this.label47.TabIndex = 10;
@@ -848,16 +868,16 @@
             // 
             // nupProcent
             // 
-            this.nupProcent.Location = new System.Drawing.Point(84, 56);
+            this.nupProcent.Location = new System.Drawing.Point(82, 88);
             this.nupProcent.Name = "nupProcent";
-            this.nupProcent.Size = new System.Drawing.Size(132, 27);
+            this.nupProcent.Size = new System.Drawing.Size(68, 27);
             this.nupProcent.TabIndex = 9;
             this.nupProcent.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label45
             // 
             this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(6, 58);
+            this.label45.Location = new System.Drawing.Point(6, 91);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(59, 20);
             this.label45.TabIndex = 8;
@@ -867,7 +887,7 @@
             // 
             this.label38.AutoSize = true;
             this.label38.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label38.Location = new System.Drawing.Point(23, 34);
+            this.label38.Location = new System.Drawing.Point(21, 50);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(54, 17);
             this.label38.TabIndex = 7;
@@ -875,15 +895,15 @@
             // 
             // txtNnominal
             // 
-            this.txtNnominal.Location = new System.Drawing.Point(84, 25);
+            this.txtNnominal.Location = new System.Drawing.Point(82, 41);
             this.txtNnominal.Name = "txtNnominal";
-            this.txtNnominal.Size = new System.Drawing.Size(159, 27);
+            this.txtNnominal.Size = new System.Drawing.Size(68, 27);
             this.txtNnominal.TabIndex = 6;
             // 
             // label46
             // 
             this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(6, 28);
+            this.label46.Location = new System.Drawing.Point(4, 44);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(20, 20);
             this.label46.TabIndex = 0;
@@ -891,10 +911,10 @@
             // 
             // btnCalculate
             // 
-            this.btnCalculate.Location = new System.Drawing.Point(694, 444);
+            this.btnCalculate.Location = new System.Drawing.Point(419, 595);
             this.btnCalculate.Name = "btnCalculate";
-            this.btnCalculate.Size = new System.Drawing.Size(136, 136);
-            this.btnCalculate.TabIndex = 8;
+            this.btnCalculate.Size = new System.Drawing.Size(464, 66);
+            this.btnCalculate.TabIndex = 9;
             this.btnCalculate.Text = "Рассчитать";
             this.btnCalculate.UseVisualStyleBackColor = true;
             // 
@@ -902,42 +922,73 @@
             // 
             this.timer1.Enabled = true;
             // 
-            // lbDate
+            // groupBox6
             // 
-            this.lbDate.AutoSize = true;
-            this.lbDate.Location = new System.Drawing.Point(63, 592);
-            this.lbDate.Name = "lbDate";
-            this.lbDate.Size = new System.Drawing.Size(58, 20);
-            this.lbDate.TabIndex = 20;
-            this.lbDate.Text = "label48";
+            this.groupBox6.Controls.Add(this.label50);
+            this.groupBox6.Controls.Add(this.label51);
+            this.groupBox6.Controls.Add(this.label49);
+            this.groupBox6.Controls.Add(this.txtPsm);
+            this.groupBox6.Controls.Add(this.label48);
+            this.groupBox6.Location = new System.Drawing.Point(12, 586);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(397, 75);
+            this.groupBox6.TabIndex = 9;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Плотность газовой смеси";
             // 
-            // lbStatusLicense
+            // label50
             // 
-            this.lbStatusLicense.AutoSize = true;
-            this.lbStatusLicense.ForeColor = System.Drawing.Color.Red;
-            this.lbStatusLicense.Location = new System.Drawing.Point(436, 592);
-            this.lbStatusLicense.Name = "lbStatusLicense";
-            this.lbStatusLicense.Size = new System.Drawing.Size(58, 20);
-            this.lbStatusLicense.TabIndex = 20;
-            this.lbStatusLicense.Text = "label48";
+            this.label50.AutoSize = true;
+            this.label50.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label50.Location = new System.Drawing.Point(275, 25);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(19, 23);
+            this.label50.TabIndex = 2;
+            this.label50.Text = "3";
             // 
-            // lbEndLicenseDate
+            // label51
             // 
-            this.lbEndLicenseDate.AutoSize = true;
-            this.lbEndLicenseDate.Location = new System.Drawing.Point(419, 592);
-            this.lbEndLicenseDate.Name = "lbEndLicenseDate";
-            this.lbEndLicenseDate.Size = new System.Drawing.Size(58, 20);
-            this.lbEndLicenseDate.TabIndex = 20;
-            this.lbEndLicenseDate.Text = "label48";
+            this.label51.AutoSize = true;
+            this.label51.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label51.Location = new System.Drawing.Point(227, 34);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(78, 23);
+            this.label51.TabIndex = 2;
+            this.label51.Text = "[кг/м    ]";
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label49.Location = new System.Drawing.Point(29, 43);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(23, 17);
+            this.label49.TabIndex = 3;
+            this.label49.Text = "см";
+            // 
+            // txtPsm
+            // 
+            this.txtPsm.Location = new System.Drawing.Point(56, 33);
+            this.txtPsm.Name = "txtPsm";
+            this.txtPsm.Size = new System.Drawing.Size(160, 27);
+            this.txtPsm.TabIndex = 8;
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label48.Location = new System.Drawing.Point(12, 25);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(24, 28);
+            this.label48.TabIndex = 0;
+            this.label48.Text = "ρ";
             // 
             // CentralForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(843, 614);
-            this.Controls.Add(this.lbEndLicenseDate);
-            this.Controls.Add(this.lbStatusLicense);
-            this.Controls.Add(this.lbDate);
+            this.ClientSize = new System.Drawing.Size(895, 711);
+            this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.btnCalculate);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.btnClear);
@@ -949,7 +1000,6 @@
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(861, 661);
             this.MinimumSize = new System.Drawing.Size(861, 661);
             this.Name = "CentralForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -970,6 +1020,8 @@
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupProcent)).EndInit();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1060,8 +1112,13 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnCalculate;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Label lbDate;
-        private System.Windows.Forms.Label lbStatusLicense;
-        private System.Windows.Forms.Label lbEndLicenseDate;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Label label50;
+        private System.Windows.Forms.Label label51;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.TextBox txtPsm;
+        private System.Windows.Forms.Label label48;
     }
 }
