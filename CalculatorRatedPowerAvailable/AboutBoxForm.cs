@@ -14,7 +14,7 @@ namespace CalculatorRatedPowerAvailable
             InitializeComponent();
             this.Text = "О программе";
             this.labelProductName.AutoSize = false;
-            this.labelProductName.Text = String.Format("Калькулятор \"{0}\"", "РАСЧЁТ НОМИНАЛЬНОЙ МОЩНОСТИ");
+            this.labelProductName.Text = String.Format("ПРОГРАММА РАСЧЕТА  НОМИНАЛЬНОЙ  РАСПОЛАГАЕМОЙ  МОЩНОСТИ  ПОЛУЧАЕМОЙ ПРИ ПОМОЩИ ДЕТАНДЕР–ГЕНЕРАТОРНОГО АГРЕГАТА");
             this.labelVersion.Text = String.Format("Версия {0}", AssemblyVersion);
             this.labelCopyright.Text = AssemblyCopyright;
             this.labelCompanyName.Text = string.Empty;//AssemblyCompany;
@@ -58,7 +58,7 @@ namespace CalculatorRatedPowerAvailable
                 //    return "";
                 //}
                 //return ((AssemblyDescriptionAttribute)attributes[0]).Description;
-                return "РАСЧЁТ НОМИНАЛЬНОЙ МОЩНОСТИ\n ДЕТАНДЕР–ГЕНЕРАТОРНОГО АГРЕГАТА\r\n\r\n\r\nРазработчик: Темиров Элдор";
+                return "ПРОГРАММА РАСЧЕТА  НОМИНАЛЬНОЙ  РАСПОЛАГАЕМОЙ  МОЩНОСТИ  ПОЛУЧАЕМОЙ ПРИ ПОМОЩИ ДЕТАНДЕР–ГЕНЕРАТОРНОГО АГРЕГАТА\r\n\r\n\r\nРазработчик: Темиров Элдор";
             }
         }
 
