@@ -7,11 +7,37 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="calculateTemplate.rtf" />
+    <None Remove="calculateWithPSmTemplate.rtf" />
+    <None Remove="documentPsmTemplate.rtf" />
+    <None Remove="documentTemplate.rtf" />
+    <None Remove="license.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AppSoftware.KatexSharpRunner" Version="0.1.0" />
     <PackageReference Include="CSharpMath" Version="0.4.2" />
     <PackageReference Include="CSharpMath.Forms" Version="0.4.2" />
     <PackageReference Include="FreeSpire.Doc" Version="7.11.0" />
     <PackageReference Include="Jint" Version="2.11.58" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="calculateTemplate.rtf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="calculateWithPSmTemplate.rtf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="documentPsmTemplate.rtf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="documentTemplate.rtf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="license.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

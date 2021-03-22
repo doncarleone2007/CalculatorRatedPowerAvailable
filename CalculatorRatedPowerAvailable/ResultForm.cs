@@ -175,13 +175,11 @@ namespace CalculatorRatedPowerAvailable
         {
             Dictionary<string, string> replaceDict = new Dictionary<string, string>();
 
-            replaceDict.Add("#psmtext#", Result.IsPsantimeter?"была передана для расчёта":"расчитается по формуле");
             replaceDict.Add("#grsname#", Result.GrsName.ToUpperInvariant().ToString());
             replaceDict.Add("#subgrsname#", Result.SubGrsName.ToUpperInvariant().ToString());
             replaceDict.Add("#msm#", Result.Msantimeter.ToString());
             replaceDict.Add("#bigr#", Result.R.ToString());
             replaceDict.Add("#smallk#", Result.K.ToString());
-            replaceDict.Add("#smallkcomment#", Result.IsCalculateK ? "рассчитанное значение" : string.Empty);
             replaceDict.Add("#had#", Result.Had.ToString());
             replaceDict.Add("#psm#", Result.Psantimeter.ToString());
             replaceDict.Add("#bigg#", Result.G.ToString());
@@ -241,9 +239,11 @@ namespace CalculatorRatedPowerAvailable
         {
             var document = new Document();
             document.LoadRtf(Path.Combine(Environment.CurrentDirectory, Result.IsPsantimeter ? "calculateWithPSmTemplate.rtf" : "calculateTemplate.rtf"));
-            //get strings to replace
+            
             Dictionary<string, string> dictReplace = GetReplaceResultDictionary();
-            //Replace text
+            dictReplace.Add("#smallkcomment#", Result.IsCalculateK ? "рассчитанное значение" : string.Empty);
+
+            
             foreach (KeyValuePair<string, string> kvp in dictReplace)
             {
                 document.Replace(kvp.Key, kvp.Value, true, true);
@@ -258,9 +258,21 @@ namespace CalculatorRatedPowerAvailable
         private void SetRtfToRichtextBoxResultDocument()
         {
             var document = new Document();
-            document.LoadRtf(Path.Combine(Environment.CurrentDirectory, Result.IsPsantimeter ? "documentWithPSmTemplate.rtf" : "documentTemplate.rtf"));
+            document.LoadRtf(Path.Combine(Environment.CurrentDirectory, Result.IsPsantimeter ? "documentPsmTemplate.rtf" : "documentTemplate.rtf"));
             //get strings to replace
             Dictionary<string, string> dictReplace = GetReplaceResultDictionary();
+            dictReplace.Add("#v1#", Result.V1.ToString());
+            dictReplace.Add("#v2#", Result.V2.ToString());
+            dictReplace.Add("#v3#", Result.V3.ToString());
+            dictReplace.Add("#v4#", Result.V4.ToString());
+            dictReplace.Add("#v5#", Result.V5.ToString());
+            dictReplace.Add("#v6#", Result.V6.ToString());
+            dictReplace.Add("#v7#", Result.V7.ToString());
+            dictReplace.Add("#v8#", Result.V8.ToString());
+            dictReplace.Add("#v9#", Result.V9.ToString());
+            dictReplace.Add("#v10#", Result.V10.ToString());
+            dictReplace.Add("#v11#", Result.V11.ToString());
+
             //Replace text
             foreach (KeyValuePair<string, string> kvp in dictReplace)
             {
