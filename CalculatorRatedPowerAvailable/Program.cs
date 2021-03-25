@@ -18,7 +18,7 @@ namespace CalculatorRatedPowerAvailable
         [STAThread]
         static void Main()
         {
-            var ss = EncryptHelper.Encrypt(DateTime.Now.AddDays(5).ToString());
+            var ss = EncryptHelper.Encrypt(DateTime.Now.AddMonths(5).ToString());
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
