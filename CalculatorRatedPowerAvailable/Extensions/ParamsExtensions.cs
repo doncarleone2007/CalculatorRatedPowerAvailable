@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CalculatorRatedPowerAvailable.Extensions
+﻿namespace CalculatorRatedPowerAvailable.Extensions
 {
     public static class ParamsExtensions
     {

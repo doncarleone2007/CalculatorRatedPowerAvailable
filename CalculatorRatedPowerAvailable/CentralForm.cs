@@ -2,12 +2,8 @@
 using CalculatorRatedPowerAvailable.Helper.Encrypts;
 using CalculatorRatedPowerAvailable.Logics.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Text;
 using System.Windows.Forms;
 
 namespace CalculatorRatedPowerAvailable

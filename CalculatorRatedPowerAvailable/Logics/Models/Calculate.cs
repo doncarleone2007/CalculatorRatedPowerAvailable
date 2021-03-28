@@ -1,9 +1,6 @@
-﻿using AppSoftware.KatexSharpRunner;
-using CalculatorRatedPowerAvailable.Extensions;
+﻿using CalculatorRatedPowerAvailable.Extensions;
 using CalculatorRatedPowerAvailable.Helper.Consts;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CalculatorRatedPowerAvailable.Logics.Models
 {
@@ -196,15 +193,12 @@ namespace CalculatorRatedPowerAvailable.Logics.Models
         {
             this.GrsName = grsName;
             this.SubGrsName = subGrsName;
-
             this.Pvxod = pVxod;
             this.Pvixod = pVixod;
             this.Q = q;
             this.Temperature = t;
-
             this.Z = z;
             this.K = k;
-
             this.V1 = v1;
             this.V2 = v2;
             this.V3 = v3;
@@ -218,9 +212,7 @@ namespace CalculatorRatedPowerAvailable.Logics.Models
             this.V11 = v11;
             this.R = 0m;
             this.Psantimeter = pSm;
-
             this.IsPsantimeter = this.Psantimeter > 0m;
-
             this.Nnominal = nNominal;
             this.EffectProcent = effectProcent;
         }
@@ -229,10 +221,8 @@ namespace CalculatorRatedPowerAvailable.Logics.Models
         {
             if (string.IsNullOrWhiteSpace(GrsName))
                 return "Укажите наименование ГРС";
-
             if (string.IsNullOrWhiteSpace(SubGrsName))
                 return "Укажите наименование замерной нитки";
-
             if (Psantimeter > 0)
             {
                 if (V1 + V2 + V3 + V9 + V10 + V11 > 0)
@@ -244,34 +234,24 @@ namespace CalculatorRatedPowerAvailable.Logics.Models
             {
                 if (V1 != 0 && !V1.CheckIntervalParams(90m, 97.9m))
                     return "V1 параметр \"Объёмная концентрация метана\" несоответсвует";
-
                 if (V2 != 0 && !V2.CheckIntervalParams(0.75m, 4.75m))
                     return "V2 параметр \"Объёмная концентрация этана\" несоответсвует";
-
                 if (V3 != 0 && !V3.CheckIntervalParams(0.30m, 3.5m))
                     return "V3 параметр \"Объёмная концентрация пропана\" несоответсвует";
-
                 if (V4 != 0 && !V4.CheckIntervalParams(0.01m, 0.5m))
                     return "V4 параметр \"Объёмная концентрация i-бутана\" несоответсвует";
-
                 if (!V5.CheckIntervalParams(0m, 0.4m))
                     return "V5 параметр \"Объёмная концентрация n-бутана\" несоответсвует";
-
                 if (!V6.CheckIntervalParams(0m, 0.2m))
                     return "V6 параметр \"Объёмная концентрация  i-пентана\" несоответсвует";
-
                 if (!V7.CheckIntervalParams(0m, 0.15m))
                     return "V7 параметр \"Объёмная концентрация  n-пентана\" несоответсвует";
-
                 if (!V8.CheckIntervalParams(0m, 0.3m))
                     return "V8 параметр \"Объёмная концентрация гексана\" несоответсвует";
-
                 if (V9 != 0 && !V9.CheckIntervalParams(0.1m, 2.5m))
                     return "V9 параметр \"Объёмная концентрация углекислого газа\" несоответсвует";
-
                 if (V10 != 0 && !V10.CheckIntervalParams(0.2m, 1.3m))
                     return "V10 параметр \"Объёмная концентрация азота\" несоответсвует";
-
                 if (!V11.CheckIntervalParams(0m, 0.3m))
                     return "V11 параметр \"Объёмная концентрация кислорода\" несоответсвует";
 
@@ -289,19 +269,14 @@ namespace CalculatorRatedPowerAvailable.Logics.Models
                 this.Z = 0.882m;
             else if (!Z.CheckIntervalParams(0.6m, 0.9999m))
                 return "z параметр \"Коэффициент сжимаемости\" несоответсвует";
-
             if (!Pvxod.CheckIntervalParams(0.01m, 6m))
                 return "Pвх параметр \"Давление газа на входе в ДГА\" несоответсвует";
-
             if (!Pvixod.CheckIntervalParams(0.01m, 4m))
                 return "Pвых параметр \"Давление газа на выходе из ДГА\" несоответсвует";
-
             if (!Q.CheckIntervalParams(100m, 100000000m))
                 return "Q параметр \"Расход газа по нитке\" несоответсвует";
-
             if (!Temperature.CheckIntervalParams(10m, 90m))
                 return "t параметр \"Температура\" несоответсвует";
-
             if ((Nnominal > 0 && EffectProcent == 0) || (Nnominal == 0 && EffectProcent > 0))
                 return "Укажите Nnominal и Procent, чтобы узнать эффективность расчета";
 
@@ -332,21 +307,12 @@ namespace CalculatorRatedPowerAvailable.Logics.Models
                 this.Psantimeter = Math.Round(Msantimeter / 22.4m, 3);
             }
             
-
-            
-
             this.G = Math.Round((this.Q * this.Psantimeter) / 3600, 3);
-
             this.R = Math.Round(RConstants.R0 / this.Msantimeter, 3);
-
             var powResult = Math.Pow(Convert.ToDouble((this.Pvixod / this.Pvxod)), Convert.ToDouble((this.K - 1) / this.K));
-
             this.Had = Math.Round((K / (K - 1)) * this.Z * this.R * this.T * (1 - Convert.ToDecimal(powResult)), 3);
-
             this.Ndga = Math.Round(this.G * this.Had * NyuDGAConstants.NYUdga * NyuDGAConstants.NYUm, 3);
-
             this.ResultEffectProcent = Math.Round((100 * this.Nnominal) / this.Ndga, 3);
-
             this.IsEffectCalculate = this.ResultEffectProcent >= this.EffectProcent;
         }
     }

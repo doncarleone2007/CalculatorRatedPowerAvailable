@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CalculatorRatedPowerAvailable.Helper.Consts
+﻿namespace CalculatorRatedPowerAvailable.Helper.Consts
 {
     public class SmallKConstants
     {

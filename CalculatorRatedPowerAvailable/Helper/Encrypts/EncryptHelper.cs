@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CalculatorRatedPowerAvailable.Helper.Encrypts
+﻿namespace CalculatorRatedPowerAvailable.Helper.Encrypts
 {
     public static class EncryptHelper
     {
