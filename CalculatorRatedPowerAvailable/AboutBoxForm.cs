@@ -14,7 +14,7 @@ namespace CalculatorRatedPowerAvailable
             InitializeComponent();
             this.Text = "О программе";
             this.labelProductName.AutoSize = false;
-            this.labelProductName.Text = String.Format("ПРОГРАММА РАСЧЕТА  НОМИНАЛЬНОЙ  РАСПОЛАГАЕМОЙ  МОЩНОСТИ\r\nПОЛУЧАЕМОЙ ПРИ ПОМОЩИ ДЕТАНДЕР–ГЕНЕРАТОРНОГО АГРЕГАТА");
+            this.labelProductName.Text = String.Format("РАСЧЁТ НОМИНАЛЬНОЙ РАСПОЛАГАЕМОЙ МОЩНОСТИ НА ГРС И ГРП\r\nПРИ ПОМОЩИ ДЕТАНДЕР-ГЕНЕРАТОРНОГО АГРЕГАТА");
             this.labelVersion.Text = String.Format("Версия {0}", AssemblyVersion);
             this.labelCopyright.Text = AssemblyCopyright;
             this.labelCompanyName.Text = string.Empty;//AssemblyCompany;
@@ -58,7 +58,7 @@ namespace CalculatorRatedPowerAvailable
                 //    return "";
                 //}
                 //return ((AssemblyDescriptionAttribute)attributes[0]).Description;
-                return "ПРОГРАММА РАСЧЕТА  НОМИНАЛЬНОЙ  РАСПОЛАГАЕМОЙ  МОЩНОСТИ  ПОЛУЧАЕМОЙ ПРИ ПОМОЩИ ДЕТАНДЕР–ГЕНЕРАТОРНОГО АГРЕГАТА\r\n\r\n" +
+                return "РАСЧЁТ НОМИНАЛЬНОЙ РАСПОЛАГАЕМОЙ МОЩНОСТИ НА ГРС И ГРП\r\nПРИ ПОМОЩИ ДЕТАНДЕР-ГЕНЕРАТОРНОГО АГРЕГАТА\r\n\r\n" +
                     "\r\nИсполнители:         Халисматов И.Х." +
                     "\r\n\t\t Махмудов Х.Ф." +
                     "\r\n\t\t Муколянц. А.А." +

@@ -8,9 +8,13 @@
 
   <ItemGroup>
     <None Remove="calculateTemplate.rtf" />
+    <None Remove="calculateTemplate97.rtf" />
     <None Remove="calculateWithPSmTemplate.rtf" />
+    <None Remove="calculateWithPSmTemplate97.rtf" />
     <None Remove="documentPsmTemplate.rtf" />
+    <None Remove="documentPsmTemplate97.rtf" />
     <None Remove="documentTemplate.rtf" />
+    <None Remove="documentTemplate97.rtf" />
     <None Remove="license.txt" />
   </ItemGroup>
 
@@ -26,16 +30,31 @@
     <EmbeddedResource Include="calculateTemplate.rtf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="calculateTemplate97.rtf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="calculateWithPSmTemplate.rtf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="documentPsmTemplate.rtf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="documentPsmTemplate97.rtf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="documentTemplate.rtf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="documentTemplate97.rtf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="license.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="calculateWithPSmTemplate97.rtf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>

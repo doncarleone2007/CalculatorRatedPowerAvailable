@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ResultForm));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.richTextBox97Calculate = new System.Windows.Forms.RichTextBox();
+            this.richTextBox97Document = new System.Windows.Forms.RichTextBox();
             this.picBoxMsmWithPsm = new System.Windows.Forms.PictureBox();
             this.richTextBoxResultDocument = new System.Windows.Forms.RichTextBox();
             this.richTextBoxResultCalculate = new System.Windows.Forms.RichTextBox();
@@ -72,6 +74,9 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.btnDownloadCalculateWord97 = new System.Windows.Forms.Button();
+            this.btnDownloadDocumentationWord97 = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxMsmWithPsm)).BeginInit();
@@ -83,6 +88,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBoxMsm)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -97,6 +103,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.richTextBox97Calculate);
+            this.groupBox1.Controls.Add(this.richTextBox97Document);
             this.groupBox1.Controls.Add(this.picBoxMsmWithPsm);
             this.groupBox1.Controls.Add(this.richTextBoxResultDocument);
             this.groupBox1.Controls.Add(this.richTextBoxResultCalculate);
@@ -136,6 +144,24 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Расчёт";
+            // 
+            // richTextBox97Calculate
+            // 
+            this.richTextBox97Calculate.Location = new System.Drawing.Point(398, 321);
+            this.richTextBox97Calculate.Name = "richTextBox97Calculate";
+            this.richTextBox97Calculate.Size = new System.Drawing.Size(164, 57);
+            this.richTextBox97Calculate.TabIndex = 14;
+            this.richTextBox97Calculate.Text = "";
+            this.richTextBox97Calculate.Visible = false;
+            // 
+            // richTextBox97Document
+            // 
+            this.richTextBox97Document.Location = new System.Drawing.Point(398, 384);
+            this.richTextBox97Document.Name = "richTextBox97Document";
+            this.richTextBox97Document.Size = new System.Drawing.Size(164, 57);
+            this.richTextBox97Document.TabIndex = 14;
+            this.richTextBox97Document.Text = "";
+            this.richTextBox97Document.Visible = false;
             // 
             // picBoxMsmWithPsm
             // 
@@ -476,20 +502,20 @@
             this.groupBox2.Size = new System.Drawing.Size(285, 106);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Word файл";
+            this.groupBox2.Text = "Word файл (*.docx)";
             // 
             // btnDownloadCalculatePDF
             // 
-            this.btnDownloadCalculatePDF.Location = new System.Drawing.Point(10, 26);
+            this.btnDownloadCalculatePDF.Location = new System.Drawing.Point(10, 25);
             this.btnDownloadCalculatePDF.Name = "btnDownloadCalculatePDF";
-            this.btnDownloadCalculatePDF.Size = new System.Drawing.Size(262, 32);
+            this.btnDownloadCalculatePDF.Size = new System.Drawing.Size(552, 32);
             this.btnDownloadCalculatePDF.TabIndex = 3;
             this.btnDownloadCalculatePDF.Text = "Скачать расчёт";
             this.btnDownloadCalculatePDF.UseVisualStyleBackColor = true;
             // 
             // btnDownloadDocumentationPDF
             // 
-            this.btnDownloadDocumentationPDF.Location = new System.Drawing.Point(10, 64);
+            this.btnDownloadDocumentationPDF.Location = new System.Drawing.Point(300, 18);
             this.btnDownloadDocumentationPDF.Name = "btnDownloadDocumentationPDF";
             this.btnDownloadDocumentationPDF.Size = new System.Drawing.Size(262, 32);
             this.btnDownloadDocumentationPDF.TabIndex = 3;
@@ -501,16 +527,16 @@
             // 
             this.groupBox3.Controls.Add(this.btnDownloadCalculatePDF);
             this.groupBox3.Controls.Add(this.btnDownloadDocumentationPDF);
-            this.groupBox3.Location = new System.Drawing.Point(303, 603);
+            this.groupBox3.Location = new System.Drawing.Point(12, 716);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(285, 106);
+            this.groupBox3.Size = new System.Drawing.Size(576, 71);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "PDF файл";
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(12, 715);
+            this.btnClose.Location = new System.Drawing.Point(12, 793);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(575, 29);
             this.btnClose.TabIndex = 5;
@@ -521,19 +547,49 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // btnDownloadCalculateWord97
+            // 
+            this.btnDownloadCalculateWord97.Location = new System.Drawing.Point(10, 26);
+            this.btnDownloadCalculateWord97.Name = "btnDownloadCalculateWord97";
+            this.btnDownloadCalculateWord97.Size = new System.Drawing.Size(262, 32);
+            this.btnDownloadCalculateWord97.TabIndex = 3;
+            this.btnDownloadCalculateWord97.Text = "Скачать расчёт";
+            this.btnDownloadCalculateWord97.UseVisualStyleBackColor = true;
+            // 
+            // btnDownloadDocumentationWord97
+            // 
+            this.btnDownloadDocumentationWord97.Location = new System.Drawing.Point(10, 64);
+            this.btnDownloadDocumentationWord97.Name = "btnDownloadDocumentationWord97";
+            this.btnDownloadDocumentationWord97.Size = new System.Drawing.Size(262, 32);
+            this.btnDownloadDocumentationWord97.TabIndex = 3;
+            this.btnDownloadDocumentationWord97.Text = "Скачать документацию";
+            this.btnDownloadDocumentationWord97.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.btnDownloadCalculateWord97);
+            this.groupBox4.Controls.Add(this.btnDownloadDocumentationWord97);
+            this.groupBox4.Location = new System.Drawing.Point(303, 603);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(285, 106);
+            this.groupBox4.TabIndex = 4;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Word (97-2003) файл (*.doc)";
+            // 
             // ResultForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(599, 753);
+            this.ClientSize = new System.Drawing.Size(599, 833);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(617, 800);
-            this.MinimumSize = new System.Drawing.Size(617, 800);
+            this.MaximumSize = new System.Drawing.Size(617, 880);
+            this.MinimumSize = new System.Drawing.Size(617, 880);
             this.Name = "ResultForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Форма результата";
@@ -549,6 +605,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBoxMsm)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -597,5 +654,10 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.RichTextBox richTextBoxResultDocument;
         private System.Windows.Forms.PictureBox picBoxMsmWithPsm;
+        private System.Windows.Forms.RichTextBox richTextBox97Calculate;
+        private System.Windows.Forms.RichTextBox richTextBox97Document;
+        private System.Windows.Forms.Button btnDownloadCalculateWord97;
+        private System.Windows.Forms.Button btnDownloadDocumentationWord97;
+        private System.Windows.Forms.GroupBox groupBox4;
     }
 }

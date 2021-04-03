@@ -222,12 +222,93 @@ namespace CalculatorRatedPowerAvailable
 
             SetRtfToRichtextBoxResultCalculate();
             SetRtfToRichtextBoxResultDocument();
+
+            SetRtfToRichtextBoxResultCalculate97();
+            SetRtfToRichtextBoxResultDocument97();
+
             btnClose.Click += BtnClose_Click;
             btnDownloadCalculateWord.Click += BtnDownloadCalculateWord_Click;
             btnDownloadDocumentationWord.Click += BtnDownloadDocumentationWord_Click;
 
+            btnDownloadCalculateWord97.Click += BtnDownloadCalculateWord97_Click;
+            btnDownloadDocumentationWord97.Click += BtnDownloadDocumentationWord97_Click;
+
             btnDownloadCalculatePDF.Click += BtnDownloadCalculatePDF_Click;
             btnDownloadDocumentationPDF.Click += BtnDownloadDocumentationPDF_Click;
+        }
+
+        private void BtnDownloadDocumentationWord97_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.InitialDirectory = @"C:\";
+            saveFileDialog1.Title = "Save Word Files";
+            //saveFileDialog1.CreatePrompt = true;
+            saveFileDialog1.OverwritePrompt = true;
+            //saveFileDialog1.CheckFileExists = true;
+            //saveFileDialog1.CheckPathExists = true;
+            saveFileDialog1.DefaultExt = "doc";
+            saveFileDialog1.Filter = "Word 97-2003 Documents (*.doc)|*.doc";
+            saveFileDialog1.FilterIndex = 2;
+            saveFileDialog1.RestoreDirectory = true;
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Document doc = new Document();
+                Section section = doc.AddSection();
+                Paragraph Para = section.AddParagraph();
+                Para.AppendRTF(richTextBox97Document.Rtf);
+
+                doc.SaveToFile(saveFileDialog1.FileName, FileFormat.Docx);
+                //Convert to PDF
+                //document.SaveToFile(pdfPath, FileFormat.PDF);
+                MessageBox.Show("Создан результат расчёта в Word файле", "Выполнен процесс", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                doc.Close();
+
+                try
+                {
+                    Process.Start(saveFileDialog1.FileName);
+                }
+                catch
+                {
+                }
+            }
+        }
+
+        private void BtnDownloadCalculateWord97_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.InitialDirectory = @"C:\";
+            saveFileDialog1.Title = "Save Word Files";
+            //saveFileDialog1.CreatePrompt = true;
+            saveFileDialog1.OverwritePrompt = true;
+            //saveFileDialog1.CheckFileExists = true;
+            //saveFileDialog1.CheckPathExists = true;
+            saveFileDialog1.DefaultExt = "doc";
+            saveFileDialog1.Filter = "Word 97-2003 Documents (*.doc)|*.doc";
+            saveFileDialog1.FilterIndex = 2;
+            saveFileDialog1.RestoreDirectory = true;
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Document doc = new Document();
+                Section section = doc.AddSection();
+                Paragraph Para = section.AddParagraph();
+                Para.AppendRTF(richTextBox97Calculate.Rtf);
+
+                doc.SaveToFile(saveFileDialog1.FileName, FileFormat.Docx);
+                //Convert to PDF
+                //document.SaveToFile(pdfPath, FileFormat.PDF);
+                MessageBox.Show("Создан результат расчёта в Word файле", "Выполнен процесс", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                doc.Close();
+
+                try
+                {
+                    Process.Start(saveFileDialog1.FileName);
+                }
+                catch
+                {
+                }
+            }
         }
 
         private void BtnClose_Click(object sender, EventArgs e)
@@ -283,6 +364,56 @@ namespace CalculatorRatedPowerAvailable
             document.Close();
 
             richTextBoxResultDocument.LoadFile(Path.Combine(Environment.CurrentDirectory, $"resultDocument.rtf"));
+        }
+
+        private void SetRtfToRichtextBoxResultCalculate97()
+        {
+            var document = new Document();
+            document.LoadRtf(Path.Combine(Environment.CurrentDirectory, Result.IsPsantimeter ? "calculateWithPSmTemplate97.rtf" : "calculateTemplate97.rtf"));
+
+            Dictionary<string, string> dictReplace = GetReplaceResultDictionary();
+            dictReplace.Add("#smallkcomment#", Result.IsCalculateK ? "рассчитанное значение" : string.Empty);
+
+
+            foreach (KeyValuePair<string, string> kvp in dictReplace)
+            {
+                document.Replace(kvp.Key, kvp.Value, true, true);
+            }
+
+            document.SaveToFile(Path.Combine(Environment.CurrentDirectory, $"resultCalculate97.rtf"), FileFormat.Rtf);
+            document.Close();
+
+            richTextBox97Calculate.LoadFile(Path.Combine(Environment.CurrentDirectory, $"resultCalculate97.rtf"));
+        }
+
+        private void SetRtfToRichtextBoxResultDocument97()
+        {
+            var document = new Document();
+            document.LoadRtf(Path.Combine(Environment.CurrentDirectory, Result.IsPsantimeter ? "documentPsmTemplate97.rtf" : "documentTemplate97.rtf"));
+            //get strings to replace
+            Dictionary<string, string> dictReplace = GetReplaceResultDictionary();
+            dictReplace.Add("#v1#", Result.V1.ToString());
+            dictReplace.Add("#v2#", Result.V2.ToString());
+            dictReplace.Add("#v3#", Result.V3.ToString());
+            dictReplace.Add("#v4#", Result.V4.ToString());
+            dictReplace.Add("#v5#", Result.V5.ToString());
+            dictReplace.Add("#v6#", Result.V6.ToString());
+            dictReplace.Add("#v7#", Result.V7.ToString());
+            dictReplace.Add("#v8#", Result.V8.ToString());
+            dictReplace.Add("#v9#", Result.V9.ToString());
+            dictReplace.Add("#v10#", Result.V10.ToString());
+            dictReplace.Add("#v11#", Result.V11.ToString());
+
+            //Replace text
+            foreach (KeyValuePair<string, string> kvp in dictReplace)
+            {
+                document.Replace(kvp.Key, kvp.Value, true, true);
+            }
+
+            document.SaveToFile(Path.Combine(Environment.CurrentDirectory, $"resultDocument97.rtf"), FileFormat.Rtf);
+            document.Close();
+
+            richTextBox97Document.LoadFile(Path.Combine(Environment.CurrentDirectory, $"resultDocument97.rtf"));
         }
     }
 }
